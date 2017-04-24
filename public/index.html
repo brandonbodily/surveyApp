@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="SurveyApp">
+  <head>
+    <link rel="stylesheet" href="survey.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  </head>
+  <body ng-controller="MainController">
+   <header>
+    <h1>Survey</h1>
+    <h3>Vote Up!</h3>
+  </header>
+
+  <div>
+    <label>Question:</label>
+    <input type="text" ng-model="question">
+    <br>
+    <label>Options:</label>
+    <div ng-repeat="option in options" style="display:inline-block;">
+      <input type="text" ng-model="option.in" style="width: 200px; ">
+    </div>
+    <button ng-click="addOption()">+</button>
+    <br>
+    <button ng-click="createSurvey()">Send</button>
+  </div>
+
+  <div class="survey" ng-repeat="survey in surveys">
+
+  <h4>{{ survey.question }}</h4>
+  <div class="options" id="{{option.in}}" ng-repeat="option in survey.options" ng-click="optionClicked(survey.options, option.in, survey.question)">{{ option.in }} {{ option.votes }}</div>
+
+  </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controller.js"></script>
+    <script src="service.js"></script>
+  </body>
+</html>
